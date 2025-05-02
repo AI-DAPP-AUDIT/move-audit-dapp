@@ -1,8 +1,7 @@
-import { Box, Container, Flex, Heading } from "@radix-ui/themes";
-import { ConnectButton } from "@mysten/dapp-kit";
+import { Box, Container } from "@radix-ui/themes";
 import FileUpload from "../components/upload";
 import { useState } from "react";
-
+import { Header } from "../components/Header";
 
 function Upload() {
   const [uploadMessage, setUploadMessage] = useState<string | null>(null);
@@ -19,26 +18,7 @@ function Upload() {
 
   return (
     <>
-      <Flex
-        position="sticky"
-        top="0"
-        px="4"
-        py="2"
-        justify="between"
-        style={{
-          borderBottom: "1px solid var(--gray-a2)",
-          background: "var(--color-background)",
-          zIndex: 10,
-        }}
-      >
-        <Box>
-          <Heading>MOVE AUDIT</Heading>
-        </Box>
-        <Box>
-          <ConnectButton />
-        </Box>
-      </Flex>
-
+      <Header />
       <Container size="3" mt="5">
         <Box
           p="4"

@@ -14,11 +14,13 @@ interface CreateOrderResponse {
 
 type Result<T, E> = { ok: true; data: T } | { ok: false; error: E };
 
-export async function CreateOrder(): Promise<Result<Order, string>> {
+export async function CreateOrder(address: string): Promise<Result<Order, string>> {
     var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
 
-    var raw = JSON.stringify({});
+    var raw = JSON.stringify({
+        "address": address
+    });
 
     var requestOptions: RequestInit = {
         method: 'POST',

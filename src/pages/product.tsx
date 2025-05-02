@@ -1,9 +1,10 @@
-import { Box, Container, Flex, Heading, Card, Inset, Text } from "@radix-ui/themes";
-import { ConnectButton, useCurrentAccount, useConnectWallet, useWallets} from "@mysten/dapp-kit";
+import { Box, Container, Card, Inset, Text, Flex } from "@radix-ui/themes";
+import { useCurrentAccount, useConnectWallet, useWallets} from "@mysten/dapp-kit";
 import Correct from "../components/correct";
 import TransactionButton from "../components/transaction";
 import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import { Header } from "../components/Header";
 
 function Product() {
     const currentAccount = useCurrentAccount();
@@ -24,25 +25,7 @@ function Product() {
 
     return (
         <>
-            <Flex
-                position="sticky"
-                top="0"
-                px="4"
-                py="2"
-                justify="between"
-                style={{
-                    borderBottom: "1px solid var(--gray-a2)",
-                    background: "var(--color-background)",
-                    zIndex: 10,
-                }}
-            >
-                <Box>
-                    <Heading>MOVE AUDIT</Heading>
-                </Box>
-                <Box>
-                    <ConnectButton />
-                </Box>
-            </Flex>
+            <Header />
             <Container size="1" px="4" py="5">
                 <Box maxWidth="480px" mx="auto">
                     <Card size="3">
@@ -94,7 +77,8 @@ function Product() {
 
                             <Box mt="4">
                                 <TransactionButton 
-                                    amount={100000} 
+                                    amount={100000}
+                                    currentAccount={currentAccount}
                                 />
                             </Box>
                         </Flex>

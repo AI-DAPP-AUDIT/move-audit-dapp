@@ -2,6 +2,7 @@ import { Transaction } from '@mysten/sui/transactions';
 import {
 	useSignTransaction,
 	useSuiClient,
+	useCurrentAccount,
 } from '@mysten/dapp-kit';
 import { Button } from '@radix-ui/themes';
 import { currentConfig } from '../config';
@@ -10,17 +11,17 @@ import { useNavigate } from "react-router-dom";
 
 interface TransactionButtonProps {
 	amount: number;
+	currentAccount: ReturnType<typeof useCurrentAccount>;
 }
  
-function TransactionButton({ amount }: TransactionButtonProps) {
+function TransactionButton({ amount, currentAccount }: TransactionButtonProps) {
 	const { mutateAsync: signTransaction } = useSignTransaction();
 	const client = useSuiClient();
 	const navigate = useNavigate();
-	// const currentAccount = useCurrentAccount();
 
-	// // if (!currentAccount) {
-	// // 	return null;
-	// // }
+	if (!currentAccount) {
+		return null;
+	}
 
 	return (
 		<Button 
@@ -29,7 +30,7 @@ function TransactionButton({ amount }: TransactionButtonProps) {
 			color="blue"
 			style={{ width: '100%' }}
 			onClick={async () => {				
-                const result = await CreateOrder();
+                const result = await CreateOrder(currentAccount.address);
                 if (!result.ok) {
                     console.error(result.error);
 					return
