@@ -1,7 +1,11 @@
 import { Box, Flex, Heading } from "@radix-ui/themes";
 import { ConnectButton } from "@mysten/dapp-kit";
 
-export function Header() {
+interface HeaderProps {
+  className?: string;
+}
+
+export function Header({ className }: HeaderProps) {
   return (
     <Flex
       position="sticky"
@@ -10,9 +14,9 @@ export function Header() {
       py="2"
       justify="between"
       align="center"
+      className={`header ${className || ''}`}
       style={{
         borderBottom: "1px solid var(--gray-a2)",
-        background: "var(--color-background)",
         zIndex: 10,
       }}
     >

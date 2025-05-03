@@ -1,0 +1,15 @@
+.header {
+  background: var(--color-background);
+  transition: background 0.3s cubic-bezier(.4,0,.2,1), box-shadow 0.3s;
+  box-shadow: none;
+}
+
+.header.transparent {
+  background: rgba(10, 15, 24, 0.95) !important;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08) !important;
+}
+
+.header.solid {
+  background: rgba(10, 15, 24, 0.95) !important;
+  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.08) !important;
+}
