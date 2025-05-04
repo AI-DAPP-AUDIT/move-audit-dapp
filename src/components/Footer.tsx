@@ -12,12 +12,12 @@ const Footer: React.FC = () => {
         <div className="footer-right">
           <p>Follow Us On</p>
           <a 
-            href="https://github.com/aiauditshield" 
+            href="https://github.com/orgs/AI-DAPP-AUDIT/repositories" 
             target="_blank" 
             rel="noopener noreferrer"
             className="social-link"
           >
-            <img src="/github-icon.png" alt="GitHub" />
+            <img src="/github-mark.svg" alt="GitHub" />
           </a>
         </div>
       </div>

@@ -3,6 +3,7 @@ import { Header } from "./components/Header";
 import HeroSection from "./components/HeroSection";
 import FeaturesSection from "./components/FeaturesSection";
 import PartnersSection from "./components/PartnersSection";
+import CallToActionSection from "./components/CallToActionSection";
 import Footer from "./components/Footer";
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <HeroSection />
         <FeaturesSection />
         <PartnersSection />
+        <CallToActionSection />
       </main>
       <Footer />
     </>

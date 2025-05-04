@@ -1,5 +1,7 @@
 import { Box, Flex, Heading } from "@radix-ui/themes";
 import { ConnectButton } from "@mysten/dapp-kit";
+import './Header.css';
+import { Link } from 'react-router-dom';
 
 interface HeaderProps {
   className?: string;
@@ -22,15 +24,18 @@ export function Header({ className }: HeaderProps) {
     >
       <Box>
         <Flex align="center" gap="3">
-          <img
-            src="/logo.svg"
-            alt="Move Audit Logo"
-            style={{
-              height: "32px",
-              width: "auto",
-            }}
-          />
-          <Heading>MOVE AUDIT</Heading>
+          <Link to="/" className="logo-link">
+            <img
+              src="/logo.svg"
+              alt="Move Audit Logo"
+              style={{
+                height: "32px",
+                width: "auto",
+              }}
+            />
+            <Heading>MOVE AUDIT</Heading>
+          </Link>
+          
         </Flex>
       </Box>
       <Box>
@@ -38,4 +43,4 @@ export function Header({ className }: HeaderProps) {
       </Box>
     </Flex>
   );
-} 
+}

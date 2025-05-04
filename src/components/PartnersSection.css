@@ -1,14 +1,16 @@
 .partners-section {
-  padding: 6rem 2rem;
-  background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
-  color: white;
+  padding: 6rem 2rem 4rem 2rem;
+  background: #fff;
+  color: #1a232b;
 }
 
 .partners-section h2 {
   text-align: center;
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 4rem;
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin-bottom: 3rem;
+  color: #1a232b;
+  letter-spacing: 0.01em;
 }
 
 .partners-grid {
@@ -16,51 +18,83 @@
   justify-content: center;
   align-items: center;
   gap: 4rem;
-  max-width: 1200px;
+  max-width: 900px;
   margin: 0 auto;
+  padding-bottom: 2rem;
 }
 
 .partner-logo {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  gap: 1rem;
-  transition: all 0.3s ease;
+  gap: 1.2rem;
+  transition: all 0.3s cubic-bezier(.4,2,.6,1);
+  text-decoration: none;
+  color: #1a232b;
+  padding: 0.5rem 1.5rem;
+  border-radius: 16px;
+  background: transparent;
+  border: 2px solid #e6f2fb;
+  box-shadow: 0 2px 8px 0 rgba(79,172,254,0.04);
 }
 
 .partner-logo img {
-  height: 80px;
+  height: 64px;
   width: auto;
-  filter: grayscale(100%);
-  transition: all 0.3s ease;
+  filter: grayscale(100%) brightness(0.92);
+  transition: all 0.3s cubic-bezier(.4,2,.6,1);
+  border-radius: 12px;
+}
+
+/* Sui logo 悬停效果 */
+.partner-logo[href="https://sui.io/"] img {
+  filter: grayscale(100%) brightness(0.8);
+}
+
+.partner-logo[href="https://sui.io/"]:hover img {
+  filter: grayscale(0%) brightness(1) sepia(100%) hue-rotate(180deg) saturate(200%) brightness(1.2);
 }
 
 .partner-logo span {
   font-size: 1.2rem;
-  font-weight: 500;
+  font-weight: 600;
+  opacity: 0.85;
+  transition: color 0.3s, opacity 0.3s;
 }
 
-.partner-logo:hover img {
-  filter: grayscale(0%);
-  transform: scale(1.1);
+.partner-logo:hover,
+.partner-logo:focus {
+  border: 2px solid #4facfe;
+  box-shadow: 0 4px 24px 0 #4facfe22;
+  background: #f7fbfa;
 }
 
-.partner-logo:hover span {
+.partner-logo:hover img,
+.partner-logo:focus img {
+  filter: grayscale(0%) brightness(1);
+  transform: scale(1.08);
+}
+
+.partner-logo:hover span,
+.partner-logo:focus span {
   color: #4facfe;
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
   .partners-section {
-    padding: 4rem 1rem;
+    padding: 4rem 1rem 2rem 1rem;
   }
-  
   .partners-section h2 {
-    font-size: 2rem;
-    margin-bottom: 3rem;
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
   }
-  
   .partners-grid {
     flex-direction: column;
-    gap: 3rem;
+    gap: 2.5rem;
+    padding-bottom: 1rem;
+  }
+  .partner-logo img {
+    height: 40px;
   }
 } 

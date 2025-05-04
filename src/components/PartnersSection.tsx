@@ -6,18 +6,22 @@ const PartnersSection: React.FC = () => {
     <section className="partners-section">
       <h2>Trusted Partners</h2>
       <div className="partners-grid">
-        <div className="partner-logo">
-          <img src="/sui-logo.png" alt="Sui" />
-          <span>Sui</span>
-        </div>
         <a 
-          href="https://walrus.network/" 
+          href="https://sui.io/" 
           target="_blank" 
           rel="noopener noreferrer" 
           className="partner-logo"
         >
-          <img src="/walrus-logo.png" alt="Walrus" />
-          <span>Walrus</span>
+          <img src="/sui-logo.svg" alt="Sui" />
+          <span>Sui</span>
+        </a>
+        <a 
+          href="https://www.walrus.xyz/" 
+          target="_blank" 
+          rel="noopener noreferrer" 
+          className="partner-logo"
+        >
+          <img src="/walrus_logo.svg" alt="Walrus" />
         </a>
       </div>
     </section>
