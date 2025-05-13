@@ -36,17 +36,21 @@ function Result() {
             { value: 100, text: "Audit Completed!" },
         ];
         let currentStep = 0;
+        let blodId = "";
         const interval = setInterval(async () => {
             if (currentStep < steps.length) {
                 const result = await GetAudit(orderId);
                 if (result.ok) {
                     const statusValue = statusMap.get(result.data.status) ?? currentStep;
-                    setProgressValue(statusValue);
-                    setProgressStep(result.data.status);
+                    setProgressValue(steps[statusValue].value);
+                    setProgressStep(steps[statusValue].text);
                     currentStep = statusValue;
+                    if (result.data.blodId != "") {
+                        blodId = result.data.blodId;
+                        console.log("Audit completed==========, blodId:", blodId);
+                        clearInterval(interval);
+                    }
                 }
-            } else {
-                clearInterval(interval);
             }
         }, 3000);
 
