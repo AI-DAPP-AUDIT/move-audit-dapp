@@ -2,28 +2,58 @@ import { Box, Container, Progress, Text, Card, Heading } from "@radix-ui/themes"
 import PDFView from "../components/pdf"
 import { useState, useEffect } from "react";
 import { Header } from "../components/Header";
+import {GetAudit} from "../api/audit";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Result() {
     const [progressValue, setProgressValue] = useState(10);
-    const [progressStep, setProgressStep] = useState("Step 1: MCP Reading Files...");
+    const [progressStep, setProgressStep] = useState("Step 1: Wait for audit...");
+    const statusMap = new Map<string, number>();
+    statusMap.set("reading", 0);
+    statusMap.set("auditing", 1);
+    statusMap.set("auditted", 2);
+    statusMap.set("reporting", 3);
+    statusMap.set("reported", 4);
+    const location = useLocation();
+    const searchParams = new URLSearchParams(location.search);
+
+    const orderId = searchParams.get("order_id");
+    const digest = searchParams.get("digest");
+    const navigate = useNavigate();
+    const [blodId, setBlodId] = useState<string>("");
+
+    if (!orderId || !digest) {
+        navigate('/');
+        return;
+    }
+
+    console.log(orderId, digest);
 
     useEffect(() => {
         const steps = [
-            { value: 30, text: "Step 2: Analyzing Dependencies..." },
-            { value: 60, text: "Step 3: Detecting Security Vulnerabilities..." },
-            { value: 85, text: "Step 4: Generating Audit Report..." },
+            { value: 30, text: "Step 2: Mcp reading files..." },
+            { value: 50, text: "Step 3: Begin auditing..." },
+            { value: 75, text: "Step 4: Audit Completed!" },
+            { value: 85, text: "Step 5: Generating Audit Report..." },
             { value: 100, text: "Audit Completed!" },
         ];
         let currentStep = 0;
-        const interval = setInterval(() => {
+        const interval = setInterval(async () => {
             if (currentStep < steps.length) {
-                setProgressValue(steps[currentStep].value);
-                setProgressStep(steps[currentStep].text);
-                currentStep++;
-            } else {
-                clearInterval(interval);
+                const result = await GetAudit(orderId);
+                if (result.ok) {
+                    const statusValue = statusMap.get(result.data.status) ?? currentStep;
+                    setProgressValue(steps[statusValue].value);
+                    setProgressStep(steps[statusValue].text);
+                    currentStep = statusValue;
+                    if (result.data.blodId != "") {
+                        setBlodId(result.data.blodId);
+                        console.log("Audit completed==========, blodId:", result.data.blodId);
+                        clearInterval(interval);
+                    }
+                }
             }
-        }, 1500);
+        }, 3000);
 
         return () => clearInterval(interval);
     }, []);
@@ -45,7 +75,7 @@ function Result() {
               <Box>
                   <Heading size="5" align="center" mb="3">Audit Report</Heading>
                   <Card variant="surface"> 
-                      <PDFView />
+                      <PDFView blodId={blodId} />
                   </Card>
               </Box>
             )}
