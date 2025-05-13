@@ -92,7 +92,7 @@ const FileUpload: React.FC<FileUploadProps> = ({
 
       const result = await BeginAudit(orderId, digest, files);
       console.log("audit success",result);
-      navigate('/result');
+      navigate(`/result?order_id=${orderId}&digest=${digest}`);
     } catch (err) {
       setError('Upload failed: ' + (err instanceof Error ? err.message : 'unknown error'));
     } finally {
