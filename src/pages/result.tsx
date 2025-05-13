@@ -20,6 +20,8 @@ function Result() {
     const orderId = searchParams.get("order_id");
     const digest = searchParams.get("digest");
     const navigate = useNavigate();
+    const [blodId, setBlodId] = useState<string>("");
+
     if (!orderId || !digest) {
         navigate('/');
         return;
@@ -36,7 +38,6 @@ function Result() {
             { value: 100, text: "Audit Completed!" },
         ];
         let currentStep = 0;
-        let blodId = "";
         const interval = setInterval(async () => {
             if (currentStep < steps.length) {
                 const result = await GetAudit(orderId);
@@ -46,8 +47,8 @@ function Result() {
                     setProgressStep(steps[statusValue].text);
                     currentStep = statusValue;
                     if (result.data.blodId != "") {
-                        blodId = result.data.blodId;
-                        console.log("Audit completed==========, blodId:", blodId);
+                        setBlodId(result.data.blodId);
+                        console.log("Audit completed==========, blodId:", result.data.blodId);
                         clearInterval(interval);
                     }
                 }
@@ -74,7 +75,7 @@ function Result() {
               <Box>
                   <Heading size="5" align="center" mb="3">Audit Report</Heading>
                   <Card variant="surface"> 
-                      <PDFView />
+                      <PDFView blodId={blodId} />
                   </Card>
               </Box>
             )}
