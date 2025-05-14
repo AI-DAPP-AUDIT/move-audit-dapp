@@ -14,6 +14,8 @@ import { BrowserRouter, Routes, Route } from "react-router";
 import Upload from "./pages/upload.tsx"
 import Result from "./pages/result.tsx"
 import { currentConfig } from "./config";
+import 'react-pdf/dist/Page/TextLayer.css';
+import 'react-pdf/dist/Page/AnnotationLayer.css';
 
 const queryClient = new QueryClient();
 

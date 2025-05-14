@@ -2,6 +2,7 @@ import { Box, Container } from "@radix-ui/themes";
 import FileUpload from "../components/upload";
 import { useState } from "react";
 import { Header } from "../components/Header";
+import Footer from "../components/Footer";
 
 function Upload() {
   const [uploadMessage, setUploadMessage] = useState<string | null>(null);
@@ -33,6 +34,7 @@ function Upload() {
           )}
         </Box>
       </Container>
+      <Footer />
     </>
   );
 }
