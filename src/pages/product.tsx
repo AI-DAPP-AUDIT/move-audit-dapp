@@ -5,6 +5,7 @@ import TransactionButton from "../components/transaction";
 import { useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Header } from "../components/Header";
+import Footer from "../components/Footer";
 
 function Product() {
     const currentAccount = useCurrentAccount();
@@ -85,6 +86,8 @@ function Product() {
                     </Card>
                 </Box>
             </Container>
+
+            <Footer />
         </>
     );
 }
