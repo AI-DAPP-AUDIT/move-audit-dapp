@@ -32,7 +32,7 @@ function Product() {
                     <Card size="3">
                         <Inset clip="padding-box" side="top" pb="current">
                             <img
-                                src="../../public/audit.png"
+                                src="/audit.png"
                                 alt="Audit Service"
                                 style={{
                                     display: "block",
