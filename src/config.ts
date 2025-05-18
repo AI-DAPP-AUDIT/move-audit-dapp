@@ -1,21 +1,11 @@
 export const config = {
-    testnet: {
-        PACKAGE_ID: "0x01122779d9e84092859fb998fa020a905e666dc273c42f0ba9766ec2eb7f1e3b",
-        NETWORK: "testnet",
-        API_Url: "http://127.0.0.1:5000/api",
-        WALRUS_AGGREGATOR_URL: "https://aggregator.walrus-testnet.walrus.space",
-    },
-    mainnet: {
-        PACKAGE_ID: "0x01122779d9e84092859fb998fa020a905e666dc273c42f0ba9766ec2eb7f1e3b",
-        NETWORK: "testnet",
-        API_Url: "http://127.0.0.1:5000/api",
-        WALRUS_AGGREGATOR_URL: "https://aggregator.walrus-testnet.walrus.space",
-    }
+    PACKAGE_ID: import.meta.env.VITE_PACKAGE_ID,
+    NETWORK: import.meta.env.VITE_NETWORK,
+    API_Url:  import.meta.env.VITE_API_URL,
+    WALRUS_AGGREGATOR_URL: import.meta.env.VITE_WALRUS_AGGREGATOR_URL,
 } as const;
 
-export const currentConfig = import.meta.env.VITE_APP_ENV === 'production'
-    ? config.mainnet 
-    : config.testnet;
+export const currentConfig = config
 
 
 console.log('Current Environment:', import.meta.env.VITE_APP_ENV);
