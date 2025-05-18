@@ -1,4 +1,4 @@
-import { Box, Progress, Text, Card, Heading } from "@radix-ui/themes";
+import { Box, Progress, Text, Heading } from "@radix-ui/themes";
 import PDFView from "../components/pdf"
 import { useState, useEffect } from "react";
 import { Header } from "../components/Header";
