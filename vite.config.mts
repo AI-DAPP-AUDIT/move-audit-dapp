@@ -4,6 +4,7 @@ import { defineConfig, normalizePath } from 'vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 import react from "@vitejs/plugin-react-swc";
 import tailwindcss from "@tailwindcss/vite"
+// import vercel from 'vite-plugin-vercel';
 
 const require = createRequire(import.meta.url);
 const standardFontsDir = normalizePath(
@@ -28,5 +29,6 @@ export default defineConfig({
              },
            ],
     }),
+    // vercel(),
   ],
 });

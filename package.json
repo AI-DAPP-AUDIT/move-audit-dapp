@@ -28,7 +28,8 @@
     "react-router": "^7.5.0",
     "react-router-dom": "^7.5.0",
     "react-tsparticles": "^2.12.2",
-    "tsparticles": "^3.8.1"
+    "tsparticles": "^3.8.1",
+    "vite-plugin-vercel": "^9.0.5"
   },
   "devDependencies": {
     "@shadcn/ui": "^0.0.4",
