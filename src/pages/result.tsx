@@ -1,4 +1,4 @@
-import { Box, Progress, Text, Heading } from "@radix-ui/themes";
+import { Box, Progress, Text, Heading, AlertDialog } from "@radix-ui/themes";
 import PDFView from "../components/pdf"
 import { useState, useEffect } from "react";
 import { Header } from "../components/Header";
@@ -9,6 +9,8 @@ import Footer from "../components/Footer";
 function Result() {
     const [progressValue, setProgressValue] = useState(10);
     const [progressStep, setProgressStep] = useState("Step 1: Wait for audit...");
+    const [error, setError] = useState<string | null>(null);
+    const [alertOpen, setAlertOpen] = useState(false);
     const statusMap = new Map<string, number>();
     statusMap.set("reading", 0);
     statusMap.set("auditing", 1);
@@ -49,6 +51,10 @@ function Result() {
                         setBlodId(result.data.blodId);
                         clearInterval(interval);
                     }
+                } else {
+                    setError('Please try again later. For large smart contracts, consider using smaller file sizes.');
+                    setAlertOpen(true);
+                    clearInterval(interval);
                 }
             }
         }, 3000);
@@ -59,6 +65,22 @@ function Result() {
     return (
         <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <Header />
+            <AlertDialog.Root open={alertOpen} onOpenChange={setAlertOpen}>
+                <AlertDialog.Content maxWidth="400px">
+                    <AlertDialog.Title>Something went wrong</AlertDialog.Title>
+                    <AlertDialog.Description size="3">
+                        {error}
+                    </AlertDialog.Description>
+                    <Box mt="4" style={{ textAlign: 'right' }}>
+                        <AlertDialog.Action>
+                            <button onClick={() => {
+                                setAlertOpen(false);
+                                navigate("/");
+                            }} style={{ padding: '8px 20px', borderRadius: 6, background: '#6366f1', color: '#fff', border: 'none', fontWeight: 500 }}>Try again</button>
+                        </AlertDialog.Action>
+                    </Box>
+                </AlertDialog.Content>
+            </AlertDialog.Root>
             <main
                 style={{
                     flex: 1,
